@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(ueransim)
+project(ueransim VERSION 3.2.6 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 11)
@@ -44,6 +44,8 @@ add_library(devbnd SHARED src/binder.cpp)
 target_compile_options(devbnd PRIVATE -D_GNU_SOURCE -Wall -Wextra)
 target_link_options(devbnd PRIVATE -nostartfiles)
 target_link_libraries(devbnd dl)
+
+set_target_properties(devbnd PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
 
 #################### CLI EXECUTABLE ####################
 add_executable(nr-cli src/cli.cpp)
