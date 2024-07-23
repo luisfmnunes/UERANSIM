@@ -7,3 +7,6 @@ target_compile_options(utils PRIVATE -Wall -Wextra -pedantic -Wno-unused-paramet
 target_compile_options(utils PUBLIC -Wformat-security)
 
 target_link_libraries(utils ext)
+
+# Export Copy of Header Files to Build INCLUDE_DIR for External Projects
+copy_headers("${HDR_FILES}")

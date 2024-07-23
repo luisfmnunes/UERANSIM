@@ -9,3 +9,5 @@ target_link_libraries(gnb asn-ngap)
 target_link_libraries(gnb asn-rrc)
 target_link_libraries(gnb common-lib)
 
+# Export Copy of Header Files to Build INCLUDE_DIR for External Projects
+copy_headers("${HDR_FILES}")

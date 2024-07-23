@@ -12,3 +12,6 @@ target_link_libraries(common-lib asn-ngap)
 target_link_libraries(common-lib asn-rrc)
 
 target_link_libraries(common-lib sctp) # Linux SCTP
+
+# Export Copy of Header Files to Build INCLUDE_DIR for External Projects
+copy_headers("${HDR_FILES}")

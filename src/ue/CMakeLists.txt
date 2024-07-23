@@ -5,3 +5,6 @@ add_library(ue ${HDR_FILES} ${SRC_FILES})
 
 target_compile_options(ue PRIVATE -Wall -Wextra -pedantic -Wno-unused-parameter)
 target_link_libraries(ue common-lib)
+
+# Export Copy of Header Files to Build INCLUDE_DIR for External Projects
+copy_headers("${HDR_FILES}")

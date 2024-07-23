@@ -7,3 +7,10 @@ add_library(ext ${H_FILES} ${C_FILES} ${HDR_FILES} ${SRC_FILES})
 
 target_compile_options(ext PRIVATE -Wall -Wextra -pedantic -Wno-unused-parameter)
 target_include_directories(ext PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+# Export Copy of Header Files to Build INCLUDE_DIR for External Projects
+copy_headers("${H_FILES}")
+copy_headers("${HDR_FILES}")
+
+    

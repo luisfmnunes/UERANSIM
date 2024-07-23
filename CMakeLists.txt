@@ -6,6 +6,13 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(src)
 
+set(COMPILED_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include)
+file(MAKE_DIRECTORY ${COMPILED_INCLUDE_DIR})
+
+#################### CMAKE UTILS ####################
+add_subdirectory(src/cmake_utils)
+
+
 #################### SUB DIRECTORIES ####################
 
 add_subdirectory(src/ext)
@@ -16,6 +23,23 @@ add_subdirectory(src/asn/ngap)
 add_subdirectory(src/lib)
 add_subdirectory(src/gnb)
 add_subdirectory(src/ue)
+
+#################### B5G SUB DIRECTORIES ####################
+add_subdirectory(src/onppgnb)
+
+#################### ONPP GNB EXECUTABLE ####################
+
+add_executable(nr-onppgnb src/onppgnb.cpp)
+
+target_link_libraries(nr-onppgnb pthread)
+
+target_compile_options(nr-onppgnb PRIVATE -Wall -Wextra -pedantic)
+
+target_link_libraries(nr-onppgnb onppgnb)
+target_link_libraries(nr-onppgnb gnb)
+target_link_libraries(nr-onppgnb asn-rrc)
+target_link_libraries(nr-onppgnb asn-ngap)
+target_link_libraries(nr-onppgnb common-lib)
 
 #################### GNB EXECUTABLE ####################
 
@@ -53,3 +77,7 @@ target_link_libraries(nr-cli pthread)
 target_compile_options(nr-cli PRIVATE -Wall -Wextra -pedantic)
 
 target_link_libraries(nr-cli common-lib)
+
+
+#################### COMBINED STATIC LIBRARY ####################
+combine_archives(ueransim_static common-lib utils asn-ngap asn-rrc asn-asn1c gnb ue onppgnb ext)
