@@ -10,8 +10,8 @@ set(COMPILED_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include)
 file(MAKE_DIRECTORY ${COMPILED_INCLUDE_DIR})
 
 #################### CMAKE UTILS ####################
-add_subdirectory(src/cmake_utils)
 
+add_subdirectory(src/cmake_utils)
 
 #################### SUB DIRECTORIES ####################
 
@@ -25,21 +25,8 @@ add_subdirectory(src/gnb)
 add_subdirectory(src/ue)
 
 #################### B5G SUB DIRECTORIES ####################
+
 add_subdirectory(src/onppgnb)
-
-#################### ONPP GNB EXECUTABLE ####################
-
-add_executable(nr-onppgnb src/onppgnb.cpp)
-
-target_link_libraries(nr-onppgnb pthread)
-
-target_compile_options(nr-onppgnb PRIVATE -Wall -Wextra -pedantic)
-
-target_link_libraries(nr-onppgnb onppgnb)
-target_link_libraries(nr-onppgnb gnb)
-target_link_libraries(nr-onppgnb asn-rrc)
-target_link_libraries(nr-onppgnb asn-ngap)
-target_link_libraries(nr-onppgnb common-lib)
 
 #################### GNB EXECUTABLE ####################
 
@@ -64,6 +51,7 @@ target_link_libraries(nr-ue common-lib)
 target_link_libraries(nr-ue ue)
 
 ###################### IF BINDER ######################
+
 add_library(devbnd SHARED src/binder.cpp)
 target_compile_options(devbnd PRIVATE -D_GNU_SOURCE -Wall -Wextra)
 target_link_options(devbnd PRIVATE -nostartfiles)
@@ -72,6 +60,7 @@ target_link_libraries(devbnd dl)
 set_target_properties(devbnd PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
 
 #################### CLI EXECUTABLE ####################
+
 add_executable(nr-cli src/cli.cpp)
 target_link_libraries(nr-cli pthread)
 target_compile_options(nr-cli PRIVATE -Wall -Wextra -pedantic)
@@ -80,4 +69,25 @@ target_link_libraries(nr-cli common-lib)
 
 
 #################### COMBINED STATIC LIBRARY ####################
+
 combine_archives(ueransim_static common-lib utils asn-ngap asn-rrc asn-asn1c gnb ue onppgnb ext)
+
+#################### ONPP GNB EXECUTABLE ####################
+
+# add_executable(nr-onppgnb src/onppgnb.cpp)
+
+# target_link_libraries(nr-onppgnb pthread)
+
+# target_compile_options(nr-onppgnb PRIVATE -Wall -Wextra -pedantic)
+
+# target_link_libraries(nr-onppgnb onppgnb)
+# target_link_libraries(nr-onppgnb gnb)
+# target_link_libraries(nr-onppgnb asn-rrc)
+# target_link_libraries(nr-onppgnb asn-ngap)
+# target_link_libraries(nr-onppgnb common-lib)
+
+add_executable(nr-onppgnb src/onppgnb.cpp)
+
+target_link_libraries(nr-onppgnb pthread)
+target_compile_options(nr-onppgnb PRIVATE -Wall -Wextra -pedantic)
+target_link_libraries(nr-onppgnb ueransim_static)
