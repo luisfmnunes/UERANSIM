@@ -28,7 +28,9 @@ UeRrcTask::UeRrcTask(TaskBase *base) : m_base{base}, m_timers{}
     m_logger = base->logBase->makeUniqueLogger(base->config->getLoggerPrefix() + "rrc");
 
     m_startedTime = utils::CurrentTimeMillis();
-    m_state = ERrcState::RRC_IDLE;
+    //FIXME: Another manually set state
+    // m_state = ERrcState::RRC_IDLE;
+    switchState(ERrcState::RRC_IDLE);
     m_establishmentCause = ASN_RRC_EstablishmentCause_mt_Access;
 }
 

@@ -146,7 +146,9 @@ void UeRrcTask::receiveRrcReject(int cellId, const ASN_RRC_RRCReject &msg)
 void UeRrcTask::receiveRrcRelease(const ASN_RRC_RRCRelease &msg)
 {
     m_logger->debug("RRC Release received");
-    m_state = ERrcState::RRC_IDLE;
+    // FIXME: Fix RRC release state notification (done)
+    // m_state = ERrcState::RRC_IDLE; Setting Manually RRC State instead of using the switchState function
+    switchState(ERrcState::RRC_IDLE);
     m_base->nasTask->push(std::make_unique<NmUeRrcToNas>(NmUeRrcToNas::RRC_CONNECTION_RELEASE));
 }
 

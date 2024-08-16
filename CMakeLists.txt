@@ -27,6 +27,7 @@ add_subdirectory(src/ue)
 #################### B5G SUB DIRECTORIES ####################
 
 add_subdirectory(src/onppgnb)
+add_subdirectory(src/onppue)
 
 #################### GNB EXECUTABLE ####################
 
@@ -70,7 +71,7 @@ target_link_libraries(nr-cli common-lib)
 
 #################### COMBINED STATIC LIBRARY ####################
 
-combine_archives(ueransim_static common-lib utils asn-ngap asn-rrc asn-asn1c gnb ue onppgnb ext)
+combine_archives(ueransim_static common-lib utils asn-ngap asn-rrc asn-asn1c gnb ue onppgnb onppue ext)
 
 #################### ONPP GNB EXECUTABLE ####################
 
@@ -91,3 +92,11 @@ add_executable(nr-onppgnb src/onppgnb.cpp)
 target_link_libraries(nr-onppgnb pthread)
 target_compile_options(nr-onppgnb PRIVATE -Wall -Wextra -pedantic)
 target_link_libraries(nr-onppgnb ueransim_static)
+
+
+#################### ONPP UE EXECUTABLE ####################
+
+add_executable(nr-onppue src/onppue.cpp)
+target_link_libraries(nr-onppue pthread)
+target_compile_options(nr-onppue PRIVATE -Wall -Wextra -pedantic)
+target_link_libraries(nr-onppue ueransim_static)

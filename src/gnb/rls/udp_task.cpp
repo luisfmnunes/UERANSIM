@@ -90,11 +90,12 @@ void RlsUdpTask::onQuit()
     delete m_server;
 }
 
-void RlsUdpTask::receiveRlsPdu(const InetAddress &addr, std::unique_ptr<rls::RlsMessage> &&msg)
+//TODO: Modify Implementation or provide polymorphic implementation to provide the dbm from OMNeT++
+void RlsUdpTask::receiveRlsPdu(const InetAddress &addr, std::unique_ptr<rls::RlsMessage> &&msg, const int& e_dbm)
 {
     if (msg->msgType == rls::EMessageType::HEARTBEAT)
     {
-        int dbm = EstimateSimulatedDbm(m_phyLocation, ((const rls::RlsHeartBeat &)*msg).simPos);
+        int dbm = e_dbm == 0 ? EstimateSimulatedDbm(m_phyLocation, ((const rls::RlsHeartBeat &)*msg).simPos) : e_dbm;
         if (dbm < MIN_ALLOWED_DBM)
         {
             // if the simulated signal strength is such low, then ignore this message

@@ -13,6 +13,7 @@
 namespace nr::ue
 {
 
+//TODO: Here are the handlers to RRC events
 void NasMm::handleRrcEvent(const NmUeRrcToNas &msg)
 {
     if (m_mmState == EMmState::MM_NULL)

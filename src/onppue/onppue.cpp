@@ -1,4 +1,4 @@
-#include "onppgnb.hpp"
+#include "onppue.hpp"
 
 /// @brief Casts the app::NodeType to a string
 /// @param type 
@@ -56,7 +56,7 @@ static std::string StateTypeToString(const app::StateType& type)
     }
 }
 
-void onpp::gnb::OMNetGNBListerner::onConnected
+void onpp::ue::OMNetUEListerner::onConnected
 (
     app::NodeType subjectType, 
     const std::string &subjectId, 
@@ -73,7 +73,7 @@ void onpp::gnb::OMNetGNBListerner::onConnected
     );
 }
 
-void onpp::gnb::OMNetGNBListerner::onReceive
+void onpp::ue::OMNetUEListerner::onReceive
 (
     app::NodeType subjectType, 
     const std::string &subjectId, 
@@ -91,10 +91,9 @@ void onpp::gnb::OMNetGNBListerner::onReceive
         objectId,
         ConnectionTypeToString(connectionType)
     );
-
 }
 
-void onpp::gnb::OMNetGNBListerner::onSend
+void onpp::ue::OMNetUEListerner::onSend
 (
     app::NodeType subjectType, 
     const std::string &subjectId, 
@@ -114,7 +113,7 @@ void onpp::gnb::OMNetGNBListerner::onSend
     );
 }
 
-void onpp::gnb::OMNetGNBListerner::onSwitch 
+void onpp::ue::OMNetUEListerner::onSwitch 
 (
     app::NodeType subjectType, 
     const std::string &subjectId, 

@@ -22,7 +22,9 @@ void UeRrcTask::declareRadioLinkFailure(rls::ERlfCause cause)
 
 void UeRrcTask::handleRadioLinkFailure(rls::ERlfCause cause)
 {
-    m_state = ERrcState::RRC_IDLE;
+    //FIXME: Another manually set state
+    // m_state = ERrcState::RRC_IDLE;
+    switchState(ERrcState::RRC_IDLE);
     m_base->nasTask->push(std::make_unique<NmUeRrcToNas>(NmUeRrcToNas::RADIO_LINK_FAILURE));
 }
 

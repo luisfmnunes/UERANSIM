@@ -39,6 +39,8 @@ class UserEquipment;
 
 struct UeCellDesc
 {
+    //TODO: Function to set dbm based on OMNeT++ simulation.
+    // Manual setting is possible since attribute is public by default (struct)
     int dbm{};
 
     struct

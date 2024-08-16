@@ -96,6 +96,8 @@ void NasSm::sendEstablishmentRequest(const SessionConfig &config)
     ps->authorizedQoSFlowDescriptions = {};
     ps->pduAddress = {};
     ps->uplinkPending = false;
+    
+    // TODO: ADD SM States to NodeListener?
 
     /* Make PCO */
     nas::ProtocolConfigurationOptions opt{};
