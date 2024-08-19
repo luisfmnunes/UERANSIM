@@ -8,12 +8,14 @@
 
 #include "task.hpp"
 #include "utils.hpp"
+#include "encode.hpp"
 
 #include <algorithm>
 
 #include <gnb/app/task.hpp>
 #include <gnb/rrc/task.hpp>
 #include <gnb/sctp/task.hpp>
+#include <gnb/gtp/task.hpp>
 
 #include <asn/ngap/ASN_NGAP_AMFConfigurationUpdate.h>
 #include <asn/ngap/ASN_NGAP_AMFConfigurationUpdateFailure.h>
@@ -30,6 +32,8 @@
 #include <asn/ngap/ASN_NGAP_ServedGUAMIItem.h>
 #include <asn/ngap/ASN_NGAP_SliceSupportItem.h>
 #include <asn/ngap/ASN_NGAP_SupportedTAItem.h>
+
+// #include <asn/ngap.hpp>
 
 namespace nr::gnb
 {

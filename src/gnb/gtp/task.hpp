@@ -16,6 +16,7 @@
 #include <vector>
 
 #include <gnb/nts.hpp>
+#include <gnb/ngap/task.hpp>
 #include <lib/udp/server_task.hpp>
 #include <utils/logger.hpp>
 #include <utils/nts.hpp>
@@ -36,6 +37,7 @@ class GtpTask : public NtsTask
     PduSessionTree m_sessionTree;
 
     friend class GnbCmdHandler;
+    friend class NgapTask;
 
   public:
     explicit GtpTask(TaskBase *base);
@@ -45,6 +47,7 @@ class GtpTask : public NtsTask
     void onStart() override;
     void onLoop() override;
     void onQuit() override;
+    PduSessionResource const* getTunnelInfo(int ueId, int psi) const;
 
   private:
     void handleUdpReceive(const udp::NwUdpServerReceive &msg);

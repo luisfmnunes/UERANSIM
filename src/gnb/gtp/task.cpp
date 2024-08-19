@@ -284,4 +284,14 @@ void GtpTask::updateAmbrForSession(uint64_t pduSession)
     m_rateLimiter->updateSessionDownlinkLimit(pduSession, sess->sessionAmbr.dlAmbr);
 }
 
+PduSessionResource const* GtpTask::getTunnelInfo(int ueId, int psi) const {
+
+    uint64_t sessionInd = MakeSessionResInd(ueId, psi);
+    if(m_pduSessions.count(sessionInd) == 0)
+        return nullptr;
+    return m_pduSessions.at(sessionInd).get();
+    
+}
+
 } // namespace nr::gnb
+
